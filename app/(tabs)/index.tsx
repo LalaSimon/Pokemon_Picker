@@ -9,15 +9,15 @@ export default function PokemonPicker(): JSX.Element {
     const [state, dispatch] = useReducer(pokemonReducer, initialState);
     const { name, isLoading, swipedRight, swipedLeft } = state;
 
-    const position = useRef(new Animated.ValueXY()).current; // Pozycja przesuwania karty
-    const initialPosition = useRef(new Animated.Value(-600)).current; // Pozycja startowa dla wjazdu nowej karty
+    const position = useRef(new Animated.ValueXY()).current; // Position of moving card
+    const initialPosition = useRef(new Animated.Value(-600)).current; // Starting position for every cart before animation
 
     useEffect(() => {
         handlePokemonData(dispatch, name, initialPosition);
     }, []);
 
     const replaceCardWithAnimation = (): void => {
-        // animacja wymiany karty dla SKIP
+        // card exchange animation for SKIP button
         Animated.timing(position.y, {
             toValue: -600,
             duration: 300,

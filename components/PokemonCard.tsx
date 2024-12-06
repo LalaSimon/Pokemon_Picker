@@ -32,7 +32,7 @@ export const PokemonCard = ({
     const { name, types, url, abilities, errorMessage, isLoading } = state;
 
     const swipeOut = (direction: "left" | "right"): void => {
-        //funkcja wywoływana przy responderze która wpływa na pozycję karty
+        // function runned in responder, its manipulation card position
         Animated.timing(position, {
             toValue: {
                 x: direction === "right" ? 500 : -500,
@@ -53,13 +53,13 @@ export const PokemonCard = ({
         });
     };
 
-    // rotacja kartą w osi x
+    // card rotation in x axis
     const rotate = position.x.interpolate({
         inputRange: [-300, 0, 300],
         outputRange: ["-15deg", "0deg", "15deg"],
     });
 
-    // zarządzanie stanem styli dla karty w momencie ruchu
+    // state managment for card styles during animations
     const cardStyle = {
         transform: [
             { translateX: position.x },
@@ -72,7 +72,7 @@ export const PokemonCard = ({
         }),
     };
 
-    //responder do obsługi gestów
+    //responder for gesture handle
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderMove: (_, gestureState) => {
